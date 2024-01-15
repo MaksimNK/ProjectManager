@@ -7,42 +7,42 @@ import lombok.Data;
 import java.util.Date;
 
 @Entity
-@Table(name = "tasks")
+@Table(name = "reports")
 @Data
-public class Task {
+public class Report {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "task_id")
-    private Long taskId;
+    @Column(name = "report_id")
+    private Long reportId;
 
     @ManyToOne
     @JoinColumn(name = "project_id", nullable = false)
     private Project project;
 
-    @Column(name = "description", nullable = false)
-    private String description;
+    @ManyToOne
+    @JoinColumn(name = "task_id", nullable = false)
+    private Task task;
 
-    @Column(name = "priority", length = 20)
-    private String priority;
+    @Column(name = "hours_spent")
+    private Integer hoursSpent;
 
-    @Column(name = "status", length = 20)
-    private String status;
-
-    @Column(name = "assigned_to", length = 50)
-    private String assignedTo;
-
-    @Column(name = "due_date")
-    private Date dueDate;
+    @Column(name = "report_date")
+    private Date reportDate;
 
     @Column(name = "created_at", updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Date createdAt;
+
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    public Long getTaskId() {
+        return task != null ? task.getTaskId() : null;
+    }
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     public Long getProjectId() {
         return project != null ? project.getProjectId() : null;
     }
 
-    public Task() {
+    public Report() {
     }
 }

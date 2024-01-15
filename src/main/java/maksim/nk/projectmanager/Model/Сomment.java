@@ -7,33 +7,33 @@ import lombok.Data;
 import java.util.Date;
 
 @Entity
-@Table(name = "project_members")
+@Table(name = "comment_id")
 @Data
-public class ProjectMember {
+public class Сomment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "member_id")
-    private Long memberId;
+    @Column(name = "comment_id")
+    private Long commentId;
 
     @ManyToOne
-    @JoinColumn(name = "project_id", nullable = false)
-    private Project project;
+    @JoinColumn(name = "task_id", nullable = false)
+    private Task task;
 
     @Column(name = "member_name", nullable = false, length = 50)
     private String memberName;
 
-    @Column(name = "role", length = 50)
-    private String role;
+    @Column(name = "comment_text", nullable = false, columnDefinition = "TEXT")
+    private String commentText;
 
     @Column(name = "created_at", updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Date createdAt;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    public Long getProjectId() {
-        return project != null ? project.getProjectId() : null;
+    public Long getTaskId() {
+        return task != null ? task.getTaskId() : null;
     }
 
-    public ProjectMember() {
+    public Сomment() {
     }
 }
