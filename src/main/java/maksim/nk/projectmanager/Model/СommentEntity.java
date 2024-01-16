@@ -9,7 +9,7 @@ import java.util.Date;
 @Entity
 @Table(name = "comment_id")
 @Data
-public class Сomment {
+public class СommentEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,6 +34,6 @@ public class Сomment {
         return task != null ? task.getTaskId() : null;
     }
 
-    public Сomment() {
+    public СommentEntity() {
     }
 }

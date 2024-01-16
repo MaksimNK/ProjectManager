@@ -20,15 +20,15 @@ public class ProjectService {
         this.projectRepository = projectRepository;
     }
 
-    public void createProject (Project project) {
+    public void save (Project project) {
         projectRepository.save(project);
     }
 
-    public List<Project> getAllTask() {
+    public List<Project> getAllProject() {
         return projectRepository.findAll();
     }
 
-    public Project findById(Long projectId) {
+    public Project getById(Long projectId) {
         return projectRepository.findById(projectId).orElse(null);
     }
 
@@ -36,8 +36,8 @@ public class ProjectService {
         projectRepository.save(project);
     }
 
-    public void deleteProject(Project project) {
-        projectRepository.delete(project);
+    public void deleteProject(Long projectId) {
+        projectRepository.deleteById(projectId);
     }
 
 }
